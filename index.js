@@ -19,7 +19,7 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
-const socketPORT = 5000;
+const socketPORT = process.env.PORT || 5000;
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io").listen(server);
