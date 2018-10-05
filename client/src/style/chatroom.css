@@ -1,0 +1,49 @@
+.chatComponent {
+  border: 2px solid black;
+  height: auto;
+  min-height: 300px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.formMessage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.textWrap {
+  width: "100%";
+  overflow-wrap: break-word;
+}
+
+.overflow {
+  max-height: 245px;
+  overflow-y: auto;
+}
+
+.gameInfo {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.userList {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.test {
+  background-color: lightcoral;
+}
+
+.test2 {
+  background-color: lightgreen;
+}
+
+.noMarginBottom {
+  margin-bottom: 0;
+}
+
+.border {
+  border: 2px solid green;
+}

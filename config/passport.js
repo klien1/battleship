@@ -5,12 +5,12 @@ const bcrypt = require("bcryptjs");
 const User = mongoose.model("users");
 
 passport.serializeUser((user, done) => {
-  console.log("serial user:", user);
+  // console.log("serial user:", user);
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  console.log("deserial user:", id);
+  // console.log("deserial user:", id);
   const user = await User.findById(id);
   done(null, user);
 });

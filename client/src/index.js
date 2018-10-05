@@ -4,12 +4,18 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 
+import { createSocket } from "./middleware/socketio";
+
 import "materialize-css/dist/css/materialize.min.css";
 
 import App from "./components/App";
 import reducers from "./reducers";
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(
+  reducers,
+  {},
+  applyMiddleware(reduxThunk, createSocket)
+);
 
 ReactDOM.render(
   <Provider store={store}>

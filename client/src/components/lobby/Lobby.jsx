@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 
+import Chatroom from "./Chatroom";
+import UserList from "./UserList";
+import GameRoom from "./GameRoom";
+
+import "../../style/chatroom.css";
+
 class Lobby extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    };
-  }
   render() {
     return (
       <div>
-        <h1>Lobby</h1>
+        <div className="row noMarginBottom">
+          <div className="col s8">
+            <Chatroom />
+          </div>
+          <div className="col s4">
+            <UserList />
+          </div>
+        </div>
+        <div>
+          <GameRoom />
+        </div>
       </div>
     );
   }

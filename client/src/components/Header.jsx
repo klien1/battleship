@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 class Header extends Component {
   renderContent() {
     const { user } = this.props;
-    console.log("header", user);
+    // console.log("header", user);
     switch (user) {
       case null:
         return;
@@ -21,6 +21,9 @@ class Header extends Component {
       default:
         return [
           <li key="welcome">Welcome {user.username}</li>,
+          <li key="lobby">
+            <Link to="/lobby">Lobby</Link>
+          </li>,
           <li key="logout">
             <a href="/api/logout">Logout</a>
           </li>
