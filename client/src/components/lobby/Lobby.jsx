@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Chatroom from "./Chatroom";
 import UserList from "./UserList";
-import GameRoom from "./GameRoom";
+import GameRoom from "./gameroom/GameRoom";
 
 import "../../style/chatroom.css";
 

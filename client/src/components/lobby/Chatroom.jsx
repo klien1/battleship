@@ -49,7 +49,6 @@ class Chatroom extends Component {
             <ul className="chatList">
               {renderList(this.props.chat, "textWrap")}
             </ul>
-            {/* <div id="goTo" /> */}
           </div>
           <div className="row">
             <form

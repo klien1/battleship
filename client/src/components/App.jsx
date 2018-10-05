@@ -6,6 +6,7 @@ import LoginForm from "./login/LoginForm";
 import SignupForm from "./login/SignupForm";
 import Lobby from "./lobby/Lobby";
 import Landing from "./Landing";
+import PrivateRoute from "../containers/PrivateRoute";
 
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
@@ -16,6 +17,7 @@ class App extends Component {
   }
 
   render() {
+    const { auth } = this.props;
     return (
       <div>
         <BrowserRouter>
@@ -23,9 +25,28 @@ class App extends Component {
             <Header />
             <div className="container">
               <Route exact path="/" component={Landing} />
-              <Route exact path="/lobby" component={Lobby} />
-              <Route exact path="/login" component={LoginForm} />
-              <Route exact path="/signup" component={SignupForm} />
+              <PrivateRoute
+                exact
+                path="/login"
+                component={LoginForm}
+                auth={!auth}
+                redirectPath="/lobby"
+              />
+              <PrivateRoute
+                exact
+                path="/signup"
+                component={SignupForm}
+                auth={!auth}
+                redirectPath="/lobby"
+              />
+
+              <PrivateRoute
+                exact
+                path="/lobby"
+                component={Lobby}
+                auth={auth}
+                redirectPath="/login"
+              />
             </div>
           </div>
         </BrowserRouter>
@@ -34,7 +55,11 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchUser }
 )(App);

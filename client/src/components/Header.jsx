@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 class Header extends Component {
   renderContent() {
     const { user } = this.props;
-    // console.log("header", user);
     switch (user) {
       case null:
         return;
@@ -35,7 +34,9 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper light-blue darken-3">
-          <Link to="/">Welcome to battleship</Link>
+          <Link to="/" style={{ marginLeft: "2em" }}>
+            Battleship
+          </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
