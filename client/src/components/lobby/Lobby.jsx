@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import Chatroom from "./Chatroom";
 import UserList from "./UserList";
-import GameRoom from "./gameroom/GameRoom";
+import GameList from "./gamelist/GameList";
+// import GameList from './gamelist/'
 
 import "../../style/chatroom.css";
 
@@ -19,7 +20,7 @@ class Lobby extends Component {
           </div>
         </div>
         <div>
-          <GameRoom />
+          <GameList />
         </div>
       </div>
     );

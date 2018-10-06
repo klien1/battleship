@@ -5,7 +5,7 @@ module.exports = app => {
   app.post("/auth/login", (req, res, next) => {
     passport.authenticate("login", (err, user, info) => {
       if (err) return res.send(err);
-      if (!user) return res.redirect("/login");
+      if (!user) return res.send({ error: "no user" });
       req.login(user, err => {
         if (err) return res.send(err);
         return res.send({ id: req.user.id, username: req.user.username });

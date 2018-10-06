@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FETCH_USER } from "./types";
+import { SubmissionError } from "redux-form";
 
 export const fetchUser = () => async dispatch => {
   const request = await axios.get("/api/current_user");
@@ -19,7 +20,14 @@ export const authenticate = (values, history, path) => async dispatch => {
       payload: request.data
     });
     history.push("/lobby");
-  } else {
-    alert(request.data.error);
-  }
+  } else if (request.data.error._error)
+    throw new SubmissionError(request.data.error);
+  else console.log(request.data);
+  // alert(request.data.error);
+  // throw request.data.error;
+  // console.log(request.data.error);
+  //   throw new SubmissionError({
+  //     username: "User not found",
+  //     _error: "login failure"
+  //   });
 };

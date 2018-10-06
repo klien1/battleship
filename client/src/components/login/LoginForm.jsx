@@ -8,10 +8,13 @@ import loginFormFields from "./loginFormFields";
 import { authenticate } from "../../actions";
 
 class SignupForm extends Component {
+  // async login(values) {
   login(values) {
     const path = "/auth/login";
     const { authenticate, history } = this.props;
-    authenticate(values, history, path);
+    // return await authenticate(values, history, path);
+    // return authenticate(values, history, path);
+    return authenticate(values, history, path);
   }
 
   render() {

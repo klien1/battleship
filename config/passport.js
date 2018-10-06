@@ -26,8 +26,20 @@ passport.use(
         existingUser.passwordHash
       );
       if (checkPassword) return done(null, existingUser);
-      else return done({ error: "incorrect password" });
-    } else return done({ error: "user not found" });
+      else
+        return done({
+          error: {
+            password: "Incorrect password",
+            _error: "Login Failure."
+          }
+        });
+    } else
+      return done({
+        error: {
+          username: "User not found",
+          _error: "Login Failure."
+        }
+      });
   })
 );
 
@@ -35,7 +47,13 @@ passport.use(
   "signup",
   new LocalStrategy(async (username, password, done) => {
     const existingUser = await User.findOne({ username });
-    if (existingUser) return done({ error: "username already exists" });
+    if (existingUser)
+      return done({
+        error: {
+          username: "Username already exists",
+          _error: "User Creation Error"
+        }
+      });
     else {
       const SALT_ROUNDS = 12;
       bcrypt.hash(password, SALT_ROUNDS, async (err, hash) => {
