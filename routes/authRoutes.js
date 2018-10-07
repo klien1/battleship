@@ -1,5 +1,6 @@
 const passport = require("passport");
 const requireLogin = require("../middleware/requireLogin");
+const User = require("mongoose").model("users");
 
 module.exports = app => {
   app.post("/auth/login", (req, res, next) => {
@@ -21,7 +22,6 @@ module.exports = app => {
       req.login(user, err => {
         if (err) return res.send(err);
         return res.send({ id: req.user.id, username: req.user.username });
-        // return res.redirect("/lobby");
       });
     })(req, res, next);
   });
@@ -35,7 +35,9 @@ module.exports = app => {
       });
   });
 
-  app.get("/api/logout", requireLogin, (req, res) => {
+  app.get("/api/logout", requireLogin, async (req, res) => {
+    const { username } = req.user;
+    await User.findOneAndUpdate({ username }, { $set: { online: false } });
     req.logout();
     res.redirect("/");
   });
