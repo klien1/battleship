@@ -22,7 +22,11 @@ export const createSocket = store => next => action => {
 
       const curTime = `${
         curDate.getHours() === 0 ? 12 : curDate.getHours() % 12
-      }:${curDate.getMinutes()}`;
+      }:${
+        curDate.getMinutes() < 10
+          ? "0" + curDate.getMinutes()
+          : curDate.getMinutes()
+      }`;
       const period = curDate.getHours() >= 12 ? "PM" : "AM";
       const message = `${username} [${curTime}${period}]: ${msg}`;
       store.dispatch({
