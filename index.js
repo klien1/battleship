@@ -9,7 +9,8 @@ const cookieSession = require("cookie-session");
 
 // models initilization
 require("./models/User");
-require("./models/Lobby");
+// require("./models/Lobby");
+require("./models/Game");
 
 // passport setup
 require("./config/passport");
@@ -42,6 +43,7 @@ app.use(passport.session());
 // Routes
 require("./routes/authRoutes")(app);
 require("./routes/lobbyRoutes")(app, io);
+require("./routes/gameRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

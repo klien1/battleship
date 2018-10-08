@@ -1,68 +1,38 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { connect } from "react-redux";
 
 class GameInfo extends Component {
   renderGameRooms() {
-    const games = {
-      game1: {
-        room: "game1",
-        host: "jean",
-        numPlayers: 1,
-        privateGame: {
-          lock: true,
-          password: "helloworld!"
-        }
-      },
-      game2: {
-        room: "game2",
-        host: "Chicken",
-        numPlayers: 3
-      },
-      "SINK OR SWIM": {
-        room: "SINK OR SWIM",
-        host: "Goody",
-        numPlayers: 4
-      },
-      "NEWBS ONLY!": {
-        room: "NEWBS ONLY!",
-        host: "nubiMe",
-        numPlayers: 1,
-        privateGame: {
-          lock: true,
-          password: "zx"
-        }
-      }
-    };
+    // console.log("redux games", this.props.game);
 
-    const { filter } = this.props;
-    return _.chain(games)
+    const { filter, game } = this.props;
+    return _.chain(game)
       .filter(item => {
         const regexString = `^.*${filter}.*$`;
         const regex = new RegExp(regexString, "g");
-        return regex.test(item.room) || regex.test(item.host);
+        return regex.test(item.name) || regex.test(item.host);
       })
-      .map(({ room, host, numPlayers, privateGame }) => {
+      .map(({ name, host, numPlayers, password }) => {
         return (
-          <div key={room} className="col s12 m4">
+          <div key={name} className="col s12 m4">
             <div className="card">
               <div style={{ marginLeft: "1em" }} className="card-title">
-                {room}
-                {privateGame ? null : (
-                  <i className="material-icons right">lock</i>
-                )}
+                {name}
+                {password ? <i className="material-icons right">lock</i> : null}
               </div>
               <div className="card-content">
                 <span className="col">Host: {host}</span>
               </div>
               <div className="card-action">
-                {numPlayers < 4 ? (
-                  <a href="#">Join Game</a>
+                {numPlayers < 2 ? (
+                  <a href="/">Join Game</a>
                 ) : (
-                  <a href="#">Spectate</a>
+                  <a href="/">Spectate</a>
                 )}
                 <span className="right">
                   {numPlayers}
-                  /4
+                  /2
                 </span>
               </div>
             </div>
@@ -81,4 +51,10 @@ class GameInfo extends Component {
   }
 }
 
-export default GameInfo;
+const mapStateToProps = ({ game }) => {
+  return {
+    game
+  };
+};
+
+export default connect(mapStateToProps)(GameInfo);

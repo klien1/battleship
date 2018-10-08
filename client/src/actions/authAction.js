@@ -20,14 +20,9 @@ export const authenticate = (values, history, path) => async dispatch => {
       payload: request.data
     });
     history.push("/lobby");
-  } else if (request.data.error._error)
+  } else if (request.data.error._error) {
     throw new SubmissionError(request.data.error);
-  else console.log(request.data);
-  // alert(request.data.error);
-  // throw request.data.error;
-  // console.log(request.data.error);
-  //   throw new SubmissionError({
-  //     username: "User not found",
-  //     _error: "login failure"
-  //   });
+  } else {
+    console.log(request.data);
+  }
 };

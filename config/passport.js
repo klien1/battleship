@@ -64,7 +64,13 @@ passport.use(
     else {
       const SALT_ROUNDS = 12;
       bcrypt.hash(password, SALT_ROUNDS, async (err, hash) => {
-        if (err) return done(err);
+        if (err)
+          return done({
+            error: {
+              password: "Error creating password",
+              _error: "User Creation Error"
+            }
+          });
         const newUser = await new User({
           username,
           passwordHash: hash,
