@@ -24,7 +24,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            {this.props.header ? <Header /> : null}
+            {this.props.header && <Header />}
             <div className="container">
               <Route exact path="/" component={Landing} />
               <PrivateRoute

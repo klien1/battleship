@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 
-import { createSocket } from "./middleware/socketio";
+import { createLobbySocket } from "./middleware/socketio";
 
 import "materialize-css/dist/css/materialize.min.css";
 
@@ -14,7 +14,7 @@ import reducers from "./reducers";
 const store = createStore(
   reducers,
   {},
-  applyMiddleware(reduxThunk, createSocket)
+  applyMiddleware(reduxThunk, createLobbySocket)
 );
 
 ReactDOM.render(

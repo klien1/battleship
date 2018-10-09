@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Chatroom from "./Chatroom";
 import UserList from "./UserList";
 import GameList from "./gamelist/GameList";
-// import GameList from './gamelist/'
+import { connect } from "react-redux";
 
 import "../../style/chatroom.css";
 
@@ -27,4 +27,8 @@ class Lobby extends Component {
   }
 }
 
-export default Lobby;
+const mapStateToProps = ({ socket }) => {
+  return { socket };
+};
+
+export default connect(mapStateToProps)(Lobby);

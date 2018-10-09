@@ -73,7 +73,6 @@ class CreateGame extends Component {
               <input
                 ref={this.switchBoxRef}
                 defaultChecked
-                // readOnly
                 type="checkbox"
                 id="cbval"
                 label="Spectate"

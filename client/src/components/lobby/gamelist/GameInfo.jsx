@@ -13,7 +13,7 @@ class GameInfo extends Component {
         const regex = new RegExp(regexString, "g");
         return regex.test(item.name) || regex.test(item.host);
       })
-      .map(({ name, host, numPlayers, password }) => {
+      .map(({ name, host, numPlayers, password, spectate }) => {
         return (
           <div key={name} className="col s12 m4">
             <div className="card">
@@ -26,9 +26,13 @@ class GameInfo extends Component {
               </div>
               <div className="card-action">
                 {numPlayers < 2 ? (
-                  <a href="/">Join Game</a>
+                  <a href="#">Join Game</a>
+                ) : spectate ? (
+                  <a href="#">Spectate</a>
                 ) : (
-                  <a href="/">Spectate</a>
+                  <a className="white-text" href="#">
+                    &nbsp;
+                  </a>
                 )}
                 <span className="right">
                   {numPlayers}

@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 import io from "socket.io-client";
 
-export const createSocket = store => next => action => {
+export const createLobbySocket = store => next => action => {
   if (action.type === JOIN_LOBBY) {
     const lobby = io.connect("/lobbyChat");
     lobby.on("userList", userList => {
